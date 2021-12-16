@@ -22,21 +22,21 @@ function _createImgs() {
     }
     gImgsGallery.push(_createImg(['funny', 'famous']))
     gImgsGallery.push(_createImg(['animal']))
-    gImgsGallery.push(_createImg(['animal','funny','baby']))
-    gImgsGallery.push(_createImg(['animal','funny']))
-    gImgsGallery.push(_createImg(['baby','funny','famous']))
-    gImgsGallery.push(_createImg(['funny','famous']))
-    gImgsGallery.push(_createImg(['funny','baby','scary']))
-    gImgsGallery.push(_createImg(['funny','famous']))
-    gImgsGallery.push(_createImg(['funny','baby','scary']))
+    gImgsGallery.push(_createImg(['animal', 'funny', 'baby']))
+    gImgsGallery.push(_createImg(['animal', 'funny']))
+    gImgsGallery.push(_createImg(['baby', 'funny', 'famous']))
+    gImgsGallery.push(_createImg(['funny', 'famous']))
+    gImgsGallery.push(_createImg(['funny', 'baby', 'scary']))
+    gImgsGallery.push(_createImg(['funny', 'famous']))
+    gImgsGallery.push(_createImg(['funny', 'baby', 'scary']))
     gImgsGallery.push(_createImg(['famous']))
     gImgsGallery.push(_createImg(['famous']))
-    gImgsGallery.push(_createImg(['famous','funny']))
+    gImgsGallery.push(_createImg(['famous', 'funny']))
     gImgsGallery.push(_createImg(['scary']))
-    gImgsGallery.push(_createImg(['famous','funny']))
-    gImgsGallery.push(_createImg(['famous','funny']))
-    gImgsGallery.push(_createImg(['famous','scary']))
-    gImgsGallery.push(_createImg(['famous','funny']))
+    gImgsGallery.push(_createImg(['famous', 'funny']))
+    gImgsGallery.push(_createImg(['famous', 'funny']))
+    gImgsGallery.push(_createImg(['famous', 'scary']))
+    gImgsGallery.push(_createImg(['famous', 'funny']))
 }
 
 function getImgsForDisplay() {
@@ -54,4 +54,14 @@ function getImgsForDisplay() {
 
 function filterBy(filterBy) {
     gFilterBy = filterBy
+}
+
+
+function addImg(imgSrc) {
+    const img = {
+        id: ++gId,
+        url: imgSrc,
+        keyword: ''
+    }
+    gImgsGallery.push(img)
 }

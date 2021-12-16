@@ -151,3 +151,8 @@ function onShowGallery() {
     document.querySelector('.editor-section').style.display = 'none'
     document.querySelector('.saved-gallery').style.display = 'none'
 }
+
+function downloadImg(elLink) {
+    var imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+}
