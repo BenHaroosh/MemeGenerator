@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Sprint2</title>
 </head>
 
@@ -35,6 +36,8 @@
                     <option value="Baby">
                     <option value="Famous">
                 </datalist>
+                <ul class="clean-list list-filters">
+                </ul>
             </div>
         </div>
 
@@ -84,6 +87,9 @@
                 <div class="savings">
                     <button class="save-btn" onclick="onSaveMeme()">Save</button>
                     <a href="#" class="load-btn" onclick="downloadImg(this)" download="my-img.jpg">Download 🔂</a>
+                    <button class="share-btn" onclick="uploadImg()">Share</button>
+                    <div class="share-container"></div>
+                    <div class="user-msg"></div>
                 </div>
             </div>
         </div>
@@ -96,10 +102,29 @@
         </div>
     </section>
 
+    <footer>
+        <footer class="main-footer">
+            <div class="footer-container main-layout">
+                <h2><img class="logo" src="./util-imgs/LOGO.png" alt=""></h2>
+                <small>© 2021 - All Rights Reserved - Programmer
+                    <span class="footer-span">Ben Haroosh</span></small>
+    
+                <ul class="social-nav clean-list ">
+                    <li><a class="fa fa-facebook" href="#"></a></li>
+                    <li><a class="fa fa-twitter" href="#"></a></li>
+                    <li><a class="fa fa-instagram" href="#"></a></li>
+                    <li><a class="fa fa-behance" href="#"></a></li>
+                </ul>
+    
+            </div>
+        </footer>
+    </footer>
+
 
     <script src="./js/utils.js"></script>
     <script src="./js/meme-service.js"></script>
     <script src="./js/gallery-service.js"></script>
+    <script src="./js/upload-service.js"></script>
     <script src="./js/gallery-controller.js"></script>
     <script src="./js/meme-controller.js"></script>
 </body>

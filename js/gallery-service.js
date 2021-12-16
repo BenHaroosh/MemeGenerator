@@ -4,8 +4,10 @@ var gId = 0
 var gImgsGallery = []
 var gFilterBy = ''
 var gFirstOrder
+var gFilterWords;
 
 _createImgs()
+_createFilteredWords()
 
 
 function _createImg(keywords = ['funny']) {
@@ -14,6 +16,19 @@ function _createImg(keywords = ['funny']) {
         url: `img/${gId}.jpg`,
         keywords
     }
+}
+
+function _createFilteredWords() {
+    if (loadFromStorage('FilteredWordsDB')) return gFilterWords = loadFromStorage('FilteredWordsDB')
+    gFilterWords = [
+        { name: 'Scary', size: 10 },
+        { name: 'Funny', size: 20 },
+        { name: 'Baby', size: 14 },
+        { name: 'Animal', size: 40 },
+        { name: 'Famous', size: 16 },
+    ]
+
+    saveToStorage('FilteredWordsDB', gFilterWords)
 }
 
 function _createImgs() {
@@ -64,4 +79,17 @@ function addImg(imgSrc) {
         keywords: ['']
     }
     gImgsGallery.push(img)
+}
+
+function setWordFilter(filterWord, diff) {
+    const word = gFilterWords.find(word => {
+        return filterWord === word.name
+    })
+    if (word.size < 90) word.size += diff
+    gFilterBy = filterWord
+    saveToStorage('FilteredWordsDB', gFilterWords)
+}
+
+function getFilteredWords() {
+    return gFilterWords
 }

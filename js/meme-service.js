@@ -89,6 +89,7 @@ function changeAlign(alignBy) {
 
 function saveMeme() {
     if (loadFromStorage('canvasDB')) gCanvas = loadFromStorage('canvasDB')
+    console.log(gCanvas);
     gCanvas.push(gElCanvas.toDataURL())
     saveToStorage('canvasDB', gCanvas)
 
@@ -96,6 +97,6 @@ function saveMeme() {
 }
 
 function getSavedMemes() {
-    gCanvas = loadFromStorage('canvasDB')
+    if (loadFromStorage('canvasDB')) gCanvas = loadFromStorage('canvasDB')
     return gCanvas
 }

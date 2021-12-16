@@ -10,6 +10,7 @@ function renderMeme() {
     document.querySelector('.gallery-section').style.display = 'none'
     document.querySelector('.saved-gallery').style.display = 'none'
     document.querySelector('#search-choice').style.display = 'none'
+    document.querySelector('.list-filters').style.display = 'none'
     gElCanvas = document.querySelector('#my-canvas')
     gCtx = gElCanvas.getContext('2d')
     const imgMeme = getMeme()
@@ -127,13 +128,16 @@ function onShowSavedMemes() {
     document.querySelector('.editor-section').style.display = 'none'
     document.querySelector('.gallery-section').style.display = 'none'
     document.querySelector('#search-choice').style.display = 'none'
+    document.querySelector('.list-filters').style.display = 'none'
     document.querySelector('.saved-gallery').style.display = 'block'
     renderSavedMemes()
 }
 
 function renderSavedMemes() {
     const savedMemes = getSavedMemes()
-
+    if (!savedMemes || !savedMemes.length) {
+        return document.querySelector('.saved-img-container').innerHTML = `<h2> No Saved Memes Yet! </h2>`
+    }
     const strHtmls = savedMemes.map(savedMeme => {
         var strHtml = ''
         var img = new Image;
@@ -148,6 +152,7 @@ function renderSavedMemes() {
 function onShowGallery() {
     document.querySelector('.gallery-section').style.display = 'block'
     document.querySelector('#search-choice').style.display = 'block'
+    document.querySelector('.list-filters').style.display = 'flex'
     document.querySelector('.editor-section').style.display = 'none'
     document.querySelector('.saved-gallery').style.display = 'none'
 }
