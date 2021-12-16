@@ -4,7 +4,6 @@
 
 body {
   margin: 0;
-  overflow-x: hidden;
 }
 
 #my-canvas {
@@ -21,7 +20,7 @@ button:hover {
   background-color: #ff7f00;
 }
 
-.burger{
+.burger {
   background-color: inherit;
   border: none;
   font-size: 2.5rem;
@@ -218,6 +217,12 @@ button:hover {
   width: 50px;
 }
 
+#search-choice {
+  border: none;
+  box-shadow: 0px 1px 2px #777474;
+  height: 50px;
+  width: 100%;
+}
 /* VARIOUS BUTTONS SETTINGS */
 
 .add-line-btn {

@@ -21,11 +21,22 @@
                 </ul>
             </nav>
         </div>
-        
+
         <div class="welcome-container">
-            <h2 class="main-layout">Welcome to Memegenerator!😎</h2>
+            <div class="main-layout">
+                <h2>Welcome to Memegenerator!😎</h2>
+                <label for="search-choice"></label>
+                <input onkeyup="onFilterBy(this.value)" list="search" id="search-choice" name="search-choice" placeholder="Search..."/>
+                <datalist id="search">
+                    <option value="Scary">
+                    <option value="Funny">
+                    <option value="Animal">
+                    <option value="Baby">
+                    <option value="Famous">
+                </datalist>
+            </div>
         </div>
-        
+
         <div class="toggle-menu-screen screen" onclick="onMoveNav()" alt="toggle main menu"></div>
     </header>
 
@@ -37,7 +48,7 @@
     <section class="editor-section" style="display: none;">
         <div class="container main-layout">
             <div class="canvas-container">
-                <canvas id="my-canvas" height="400" width="400"></canvas>
+                <canvas id="my-canvas" height="400"></canvas>
             </div>
             <div class="actions-on-canvas">
                 <label class="text-label"> Change Text:
@@ -45,20 +56,24 @@
                 </label>
                 <div class="button-container">
 
-                    <label class="color-label" for="color"><img class="color-img" src="./util-imgs/paint-board-and-brush.jpg" alt="">
+                    <label class="color-label" for="color"><img class="color-img"
+                            src="./util-imgs/paint-board-and-brush.jpg" alt="">
                         <input type="color" id="color" onchange="onSetColorTxt(this.value)" class="color-input"
                             name="color" value="#FF0000" style="visibility: hidden;">
-                        </label>
-                        <button onclick="onAddLine()" class="add-line-btn">+</button>
-                        <button onclick="onDeleteLine()" class="trash-btn"><img src="./util-imgs/trash.jpg"></button>
-                            <button onclick="onChangeFont(-2)" class="decrease-font">A-</button>
-                            <button onclick="onChangeFont(2)" class="increase-font">A+</button>
-                            <button onclick="onMoveLine(-5)" class="moveUP"> ⬆ Move </button>
-                            <button onclick="onMoveLine(5)" class="moveDown"> Move ⬇ </button>
-                            <button onclick="onChangeFocusLine(1)" class="upNdown"><img src="./util-imgs/up-down.jpg"></button>
-                    <button class="left-btn" onclick="onChangeAlign('left')"><img src="./util-imgs/align-to-left.jpg"></button>
-                    <button class="center-btn" onclick="onChangeAlign('center')"><img src="./util-imgs/center-text-alignment.jpg"></button>
-                    <button class="right-btn" onclick="onChangeAlign('right')"><img src="./util-imgs/align-to-right.jpg"></button>
+                    </label>
+                    <button onclick="onAddLine()" class="add-line-btn">+</button>
+                    <button onclick="onDeleteLine()" class="trash-btn"><img src="./util-imgs/trash.jpg"></button>
+                    <button onclick="onChangeFont(-2)" class="decrease-font">A-</button>
+                    <button onclick="onChangeFont(2)" class="increase-font">A+</button>
+                    <button onclick="onMoveLine(-5)" class="moveUP"> ⬆ Move </button>
+                    <button onclick="onMoveLine(5)" class="moveDown"> Move ⬇ </button>
+                    <button onclick="onChangeFocusLine(1)" class="upNdown"><img src="./util-imgs/up-down.jpg"></button>
+                    <button class="left-btn" onclick="onChangeAlign('left')"><img
+                            src="./util-imgs/align-to-left.jpg"></button>
+                    <button class="center-btn" onclick="onChangeAlign('center')"><img
+                            src="./util-imgs/center-text-alignment.jpg"></button>
+                    <button class="right-btn" onclick="onChangeAlign('right')"><img
+                            src="./util-imgs/align-to-right.jpg"></button>
                 </div>
                 <button class="save-btn" onclick="onSaveMeme()">Save</button>
             </div>

@@ -9,6 +9,7 @@ function renderMeme() {
     document.querySelector('.editor-section').style.display = 'block'
     document.querySelector('.gallery-section').style.display = 'none'
     document.querySelector('.saved-gallery').style.display = 'none'
+    document.querySelector('#search-choice').style.display = 'none'
     gElCanvas = document.querySelector('#my-canvas')
     gCtx = gElCanvas.getContext('2d')
     const imgMeme = getMeme()
@@ -109,10 +110,11 @@ function resizeCanvas() {
     if (elContainer.offsetWidth < 500) elContainer.classList.add('main-layout')
     if (elContainer.offsetWidth > 500) elContainer.classList.remove('main-layout')
     gElCanvas.width = elContainer.offsetWidth
+    if (gTimeOutId) clearTimeout(gTimeOutId)
 
     gTimeOutId = setTimeout(() => {
         renderMeme()
-    }, 3000)
+    }, 2000)
 }
 
 function onMoveNav() {
@@ -124,6 +126,7 @@ function onMoveNav() {
 function onShowSavedMemes() {
     document.querySelector('.editor-section').style.display = 'none'
     document.querySelector('.gallery-section').style.display = 'none'
+    document.querySelector('#search-choice').style.display = 'none'
     document.querySelector('.saved-gallery').style.display = 'block'
     renderSavedMemes()
 }
@@ -138,11 +141,13 @@ function renderSavedMemes() {
         return strHtml += `<img src="${img.src}" />`
     })
     document.querySelector('.saved-img-container').innerHTML = strHtmls.join('')
+    if (gTimeOutId) clearTimeout(gTimeOutId)
 }
 
 
-function onShowGallery(){
+function onShowGallery() {
     document.querySelector('.gallery-section').style.display = 'block'
+    document.querySelector('#search-choice').style.display = 'block'
     document.querySelector('.editor-section').style.display = 'none'
     document.querySelector('.saved-gallery').style.display = 'none'
 }
