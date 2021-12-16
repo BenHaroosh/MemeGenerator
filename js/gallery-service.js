@@ -61,7 +61,7 @@ function addImg(imgSrc) {
     const img = {
         id: ++gId,
         url: imgSrc,
-        keyword: ''
+        keywords: ['']
     }
     gImgsGallery.push(img)
 }
