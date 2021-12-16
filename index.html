@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Sprint2</title>
+</head>
+
+<body onload="onInit()">
+    <header class="main-header">
+        <div class="header-container main-layout">
+            <img class="logo" src="./util-imgs/LOGO.png">
+            <nav class="header-nav">
+                <button class="burger" onclick="onMoveNav()"> ≡ </button>
+                <ul class="clean-list list-header">
+                    <li class="li-1"><a href="#" data-i="1" onclick="onShowGallery()">Gallery</a></li>
+                    <li class="li-2"><a href="#" data-i=" 2" onclick="onShowSavedMemes()">Memes</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="welcome-container">
+            <h2 class="main-layout">Welcome to Memegenerator!😎</h2>
+        </div>
+        
+        <div class="toggle-menu-screen screen" onclick="onMoveNav()" alt="toggle main menu"></div>
+    </header>
+
+    <section class="gallery-section">
+        <div class="img-container main-layout">
+        </div>
+
+    </section>
+    <section class="editor-section" style="display: none;">
+        <div class="container main-layout">
+            <div class="canvas-container">
+                <canvas id="my-canvas" height="400" width="400"></canvas>
+            </div>
+            <div class="actions-on-canvas">
+                <label class="text-label"> Change Text:
+                    <input type="text" onkeyup="onSetLineTxt(this.value)" class="text-input" name="text" placeholder="">
+                </label>
+                <div class="button-container">
+
+                    <label class="color-label" for="color"><img class="color-img" src="./util-imgs/paint-board-and-brush.jpg" alt="">
+                        <input type="color" id="color" onchange="onSetColorTxt(this.value)" class="color-input"
+                            name="color" value="#FF0000" style="visibility: hidden;">
+                        </label>
+                        <button onclick="onAddLine()" class="add-line-btn">+</button>
+                        <button onclick="onDeleteLine()" class="trash-btn"><img src="./util-imgs/trash.jpg"></button>
+                            <button onclick="onChangeFont(-2)" class="decrease-font">A-</button>
+                            <button onclick="onChangeFont(2)" class="increase-font">A+</button>
+                            <button onclick="onMoveLine(-5)" class="moveUP"> ⬆ Move </button>
+                            <button onclick="onMoveLine(5)" class="moveDown"> Move ⬇ </button>
+                            <button onclick="onChangeFocusLine(1)" class="upNdown"><img src="./util-imgs/up-down.jpg"></button>
+                    <button class="left-btn" onclick="onChangeAlign('left')"><img src="./util-imgs/align-to-left.jpg"></button>
+                    <button class="center-btn" onclick="onChangeAlign('center')"><img src="./util-imgs/center-text-alignment.jpg"></button>
+                    <button class="right-btn" onclick="onChangeAlign('right')"><img src="./util-imgs/align-to-right.jpg"></button>
+                </div>
+                <button class="save-btn" onclick="onSaveMeme()">Save</button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="saved-gallery" style="display: none;">
+        <div class="saved-img-container main-layout">
+
+        </div>
+    </section>
+
+
+    <script src="./js/utils.js"></script>
+    <script src="./js/meme-service.js"></script>
+    <script src="./js/gallery-service.js"></script>
+    <script src="./js/gallery-controller.js"></script>
+    <script src="./js/meme-controller.js"></script>
+</body>
+
+</html>
