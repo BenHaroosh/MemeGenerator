@@ -6,11 +6,6 @@ var gTimeOutId;
 
 
 function renderMeme() {
-    document.querySelector('.editor-section').style.display = 'block'
-    document.querySelector('.gallery-section').style.display = 'none'
-    document.querySelector('.saved-gallery').style.display = 'none'
-    document.querySelector('#search-choice').style.display = 'none'
-    document.querySelector('.list-filters').style.display = 'none'
     gElCanvas = document.querySelector('#my-canvas')
     gCtx = gElCanvas.getContext('2d')
     const imgMeme = getMeme()
@@ -28,6 +23,11 @@ function renderMeme() {
 
 function onSetImg(imgId) {
     setImg(imgId)
+    document.querySelector('.editor-section').style.display = 'block'
+    document.querySelector('.gallery-section').style.display = 'none'
+    document.querySelector('.saved-gallery').style.display = 'none'
+    document.querySelector('#search-choice').style.display = 'none'
+    document.querySelector('.list-filters').style.display = 'none'
     renderMeme()
 }
 
