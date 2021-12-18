@@ -32,7 +32,6 @@ function _createFilteredWords() {
 }
 
 function _createImgs() {
-    // var img = 
     for (var i = 0; i < 17; i++) {
     }
     gImgsGallery.push(_createImg(['funny', 'famous']))
@@ -78,7 +77,7 @@ function addImg(imgSrc) {
         url: imgSrc,
         keywords: ['']
     }
-    gImgsGallery.push(img)
+    gImgsGallery.unshift(img)
 }
 
 function setWordFilter(filterWord, diff) {

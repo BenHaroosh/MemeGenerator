@@ -22,7 +22,6 @@ function doUploadImg(imgDataUrl, onSuccess) {
     })
         .then(res => res.text())
         .then((url) => {
-            console.log('Got back live url:', url);
             onSuccess(url)
         })
         .catch((err) => {

@@ -34,7 +34,10 @@ function getMeme() {
 }
 
 function getImg() {
-    return gImgsGallery[gMeme.selectedImgId - 1]
+    const img = gImgsGallery.find(img => {
+        return img.id === gMeme.selectedImgId
+    })
+    return img
 }
 
 function setLineTxt(txtVal) {
@@ -89,7 +92,6 @@ function changeAlign(alignBy) {
 
 function saveMeme() {
     if (loadFromStorage('canvasDB')) gCanvas = loadFromStorage('canvasDB')
-    console.log(gCanvas);
     gCanvas.push(gElCanvas.toDataURL())
     saveToStorage('canvasDB', gCanvas)
 

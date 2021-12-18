@@ -115,7 +115,7 @@ function resizeCanvas() {
 
     gTimeOutId = setTimeout(() => {
         renderMeme()
-    }, 2000)
+    }, 1000)
 }
 
 function onMoveNav() {

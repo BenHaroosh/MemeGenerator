@@ -225,7 +225,7 @@ button:hover {
 .saved-img-container {
   display: grid;
   height: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-auto-rows: 300px;
   gap: 10px;
   padding-top: 20px;
@@ -264,7 +264,7 @@ button:hover {
   gap: 20px;
 }
 
-.social-nav li a{
+.social-nav li a {
   text-decoration: none;
 }
 
@@ -334,9 +334,13 @@ button:hover {
 }
 
 .decrease-font {
+  font-size: 20px;
+  font-weight: bold;
   grid-area: word1;
 }
 .increase-font {
+  font-size: 20px;
+  font-weight: bold;
   grid-area: word2;
 }
 .moveUP {
