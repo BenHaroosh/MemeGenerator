@@ -1,7 +1,5 @@
 'use strict'
 
-// var gPossibleResize = false;
-
 function onInit() {
   render()
 }
@@ -27,7 +25,7 @@ function renderGallery() {
 
 function onFilterBy(inpVal) {
   filterBy(inpVal)
-  renderGallery()
+  render()
 }
 
 

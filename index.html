@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="shortcut icon" href="./util-imgs/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="util-imgs/favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Memegenerator</title>
 </head>
@@ -14,12 +14,12 @@
 <body onload="onInit()">
     <header class="main-header">
         <div class="header-container main-layout">
-            <img class="logo" src="./util-imgs/LOGO.png">
+            <img onclick="onShowGallery()" class="logo" src="util-imgs/logo.png">
             <nav class="header-nav">
-                <button class="burger" onclick="onMoveNav()"> ≡ </button>
+                <button class="burger" onclick="onToggleNav()"> ≡ </button>
                 <ul class="clean-list list-header">
-                    <li class="li-1"><a href="#" data-i="1" onclick="onShowGallery()">Gallery</a></li>
-                    <li class="li-2"><a href="#" data-i=" 2" onclick="onShowSavedMemes()">Memes</a></li>
+                    <li><a href="#" onclick="onShowGallery()">Gallery</a></li>
+                    <li><a href="#" onclick="onShowSavedMemes()">Memes</a></li>
                 </ul>
             </nav>
         </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="toggle-menu-screen screen" onclick="onMoveNav()" alt="toggle main menu"></div>
+        <div class="toggle-menu-screen screen" onclick="onToggleNav()" alt="toggle main menu"></div>
     </header>
 
     <section class="gallery-section">
@@ -66,35 +66,53 @@
                 </label>
                 <div class="button-container">
 
-                    <label class="color-label" for="color"><img class="color-img"
-                            src="./util-imgs/paint-board-and-brush.jpg" alt="">
-                        <input type="color" id="color" onchange="onSetColorTxt(this.value)" class="color-input"
-                            name="color" value="#FF0000" style="visibility: hidden;">
-                    </label>
-                    <button onclick="onAddLine()" class="add-line-btn">+</button>
-                    <button onclick="onDeleteLine()" class="trash-btn"><img src="./util-imgs/trash.jpg"></button>
-                    <button onclick="onChangeFont(-2)" class="decrease-font">A-</button>
-                    <button onclick="onChangeFont(2)" class="increase-font">A+</button>
-                    <button onclick="onMoveLine(-5)" class="moveUP"> ⬆ Move </button>
-                    <button onclick="onMoveLine(5)" class="moveDown"> Move ⬇ </button>
-                    <button onclick="onChangeFocusLine(1)" class="upNdown"><img src="./util-imgs/up-down.jpg"></button>
-                    <button class="left-btn" onclick="onChangeAlign('left')"><img
-                            src="./util-imgs/align-to-left.jpg"></button>
-                    <button class="center-btn" onclick="onChangeAlign('center')"><img
-                            src="./util-imgs/center-text-alignment.jpg"></button>
-                    <button class="right-btn" onclick="onChangeAlign('right')"><img
-                            src="./util-imgs/align-to-right.jpg"></button>
+                    <div class="first-row">
+                        <label class="color-label" for="color">
+                            <img class="color-img" src="util-imgs/paint-board-and-brush.jpg" alt="" />
+                            <input type="color" id="color" onchange="onSetColorTxt(this.value)" class="color-input"
+                                name="color" value="#FF0000" style="visibility: hidden;">
+                        </label>
+                        <label class="fill-label" for="fill-color">
+                            <img class="fill-img" src="util-imgs/brush.png" alt="" />
+                            <input type="color" id="fill-color" onchange="onSetFillColor(this.value)"
+                                class="color-input" name="fill-color" value="#ffffff" style="visibility: hidden;">
+                        </label>
+                        <button onclick="onAddLine()" class="add-line-btn">+</button>
+                        <button onclick="onDeleteLine()" class="trash-btn">
+                            <img src="util-imgs/trash.jpg" />
+                        </button>
+                    </div>
+
+                    <div class="second-row">
+                        <button onclick="onChangeFont(-2)" class="decrease-font">A-</button>
+                        <button onclick="onChangeFont(2)" class="increase-font">A+</button>
+                        <button onclick="onMoveLine(-5)" class="moveUP"> ⬆ Move </button>
+                        <button onclick="onMoveLine(5)" class="moveDown"> Move ⬇ </button>
+                        <button onclick="onChangeFocusLine(1)" class="up-down-btn">
+                            <img src="util-imgs/up-down.jpg" />
+                        </button>
+                        <button class="left-btn" onclick="onChangeAlign('left')">
+                            <img src="util-imgs/align-to-left.jpg" />
+                        </button>
+                        <button class="center-btn" onclick="onChangeAlign('center')">
+                            <img src="util-imgs/center-text-alignment.jpg" />
+                        </button>
+                        <button class="right-btn" onclick="onChangeAlign('right')">
+                            <img src="util-imgs/align-to-right.jpg" />
+                        </button>
+                    </div>
                 </div>
                 <div class="savings">
                     <button class="save-btn" onclick="onSaveMeme()">Save</button>
                     <a href="#" class="load-btn" onclick="downloadImg(this)" download="my-img.jpg">Download 🔂</a>
                     <button class="share-btn" onclick="uploadImg()">Share</button>
                     <div class="share-container"></div>
-                    <div class="user-msg"></div>
                 </div>
             </div>
+            <div class="user-msg">
+                <h3>Your Meme has been saved and located at Memes!</h3>
+            </div>        
         </div>
-
     </section>
 
     <section class="saved-gallery" style="display: none;">
@@ -106,28 +124,41 @@
     <footer>
         <footer class="main-footer">
             <div class="footer-container main-layout">
-                <h2><img class="logo" src="./util-imgs/LOGO.png" alt=""></h2>
+                <h2>
+                    <img class="logo" src="util-imgs/logo.png" alt="" />
+                </h2>
                 <small>© 2021 - All Rights Reserved - Programmer
-                    <span class="footer-span">Ben Haroosh</span></small>
-    
+                    <span class="footer-span">Ben Haroosh</span>
+                </small>
+
                 <ul class="social-nav clean-list ">
-                    <li><a class="fa fa-facebook" href="https://www.facebook.com/campaign/landing.php?campaign_id=1635585115&extra_1=s%7Cc%7C314899114045%7Ce%7Cfacebook%20%27%7C&placement=&creative=314899114045&keyword=facebook%20%27&partner_id=googlesem&extra_2=campaignid%3D1635585115%26adgroupid%3D63029865496%26matchtype%3De%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-360705453827%26loc_physical_ms%3D1007972%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=Cj0KCQiAqbyNBhC2ARIsALDwAsDUTeZJe7v4y649wBTIarezDRofrtejZOXi29vXDyjMGVtFgi_QJj4aAsl7EALw_wcB"></a></li>
+                    <li><a class="fa fa-facebook"
+                            href="https://www.facebook.com/campaign/landing.php?campaign_id=1635585115&extra_1=s%7Cc%7C314899114045%7Ce%7Cfacebook%20%27%7C&placement=&creative=314899114045&keyword=facebook%20%27&partner_id=googlesem&extra_2=campaignid%3D1635585115%26adgroupid%3D63029865496%26matchtype%3De%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-360705453827%26loc_physical_ms%3D1007972%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=Cj0KCQiAqbyNBhC2ARIsALDwAsDUTeZJe7v4y649wBTIarezDRofrtejZOXi29vXDyjMGVtFgi_QJj4aAsl7EALw_wcB"></a>
+                    </li>
                     <li><a class="fa fa-twitter" href="https://twitter.com/explore"></a></li>
                     <li><a class="fa fa-instagram" href="https://www.instagram.com/"></a></li>
                     <li><a class="fa fa-behance" href="https://www.behance.net/"></a></li>
                 </ul>
-    
+
             </div>
         </footer>
     </footer>
 
+    <div class="modal">
+        <h2>Saved Meme:</h2>
+        <div class="modal-img-container">
+        </div>
+        <div class="modal-btns">
+        </div>
+        <button class="close-modal-btn" onclick="onCloseModal()">x</button>
+    </div>
 
-    <script src="./js/utils.js"></script>
-    <script src="./js/meme-service.js"></script>
-    <script src="./js/gallery-service.js"></script>
-    <script src="./js/upload-service.js"></script>
-    <script src="./js/gallery-controller.js"></script>
-    <script src="./js/meme-controller.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/gallery-service.js"></script>
+    <script src="js/upload-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
 </body>
 
 </html>

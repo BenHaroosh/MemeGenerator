@@ -1,6 +1,6 @@
 'use strict'
 
-var gId = 0
+var gNextId = 0
 var gImgsGallery = []
 var gFilterBy = ''
 var gFirstOrder
@@ -12,8 +12,8 @@ _createFilteredWords()
 
 function _createImg(keywords = ['funny']) {
     return {
-        id: ++gId,
-        url: `img/${gId}.jpg`,
+        id: ++gNextId,
+        url: `img/${gNextId}.jpg`,
         keywords
     }
 }
@@ -63,6 +63,15 @@ function getImgsForDisplay() {
         })
         return filteredImgs
     })
+
+    const word = gFilterWords.find(word => {
+        return gFilterBy.toLowerCase() === word.name.toLowerCase()
+    })
+    if (word && word.size < 90) {
+        word.size += 2
+        saveToStorage('FilteredWordsDB', gFilterWords)
+    }
+
     return imgs
 }
 
@@ -73,7 +82,7 @@ function filterBy(filterBy) {
 
 function addImg(imgSrc) {
     const img = {
-        id: ++gId,
+        id: ++gNextId,
         url: imgSrc,
         keywords: ['']
     }

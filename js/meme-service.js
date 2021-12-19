@@ -11,6 +11,7 @@ var gMeme = {
             size: 20,
             align: 'center',
             color: '#FF0000',
+            fillColor:'#ffffff',
             height: 0,
             width: 0
         },
@@ -19,6 +20,7 @@ var gMeme = {
             size: 20,
             align: 'center',
             color: '#FF0000',
+            fillColor:'#ffffff',
             height: 0,
             width: 0
         }
@@ -63,12 +65,18 @@ function changeFocusLine(diff) {
     }
 }
 
+function setFillColor(color){
+    var currMemeLine = gMeme.lines[gMeme.selectedLineIdx]
+    currMemeLine.fillColor = color
+}
+
 function addLine() {
     const newLine = {
         txt: 'New Line',
         size: 20,
         align: 'center',
         color: '#FF0000',
+        fillColor:'#ffffff',
         height: 0,
         width: 0
     }
@@ -91,14 +99,23 @@ function changeAlign(alignBy) {
 }
 
 function saveMeme() {
-    if (loadFromStorage('canvasDB')) gCanvas = loadFromStorage('canvasDB')
+    if (loadFromStorage('canvas')) gCanvas = loadFromStorage('canvas')
     gCanvas.push(gElCanvas.toDataURL())
-    saveToStorage('canvasDB', gCanvas)
-
-    // localStorage.setItem('canvasDB',gElCanvas.toDataURL());
+    saveToStorage('canvas', gCanvas)
 }
 
 function getSavedMemes() {
-    if (loadFromStorage('canvasDB')) gCanvas = loadFromStorage('canvasDB')
+    if (loadFromStorage('canvas')) gCanvas = loadFromStorage('canvas')
     return gCanvas
+}
+
+function downloadSaved(src) {
+    const img = gCanvas.find(canvas => src === canvas)
+    return img
+}
+
+function removeImg(src) {
+    const imgIdx = gCanvas.findIndex(canvas => src === canvas)
+    gCanvas.splice(imgIdx, 1)
+    saveToStorage('canvas', gCanvas)
 }

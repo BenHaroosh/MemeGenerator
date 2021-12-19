@@ -71,6 +71,8 @@ function drawText(imgMeme) {
     imgMeme.lines.map((imgCurrLine, idx) => {
         gCtx.font = `${imgCurrLine.size}pt IMPACT`;
         gCtx.textBaseline = 'top'
+        gCtx.fillStyle = imgCurrLine.fillColor
+        gCtx.lineWidth = 2
         gCtx.textAlign = imgCurrLine.align
         if (imgCurrLine.align === 'left') imgCurrLine.width = - (gElCanvas.width / 2)
         if (imgCurrLine.align === 'right') imgCurrLine.width = gElCanvas.width / 2
@@ -78,10 +80,13 @@ function drawText(imgMeme) {
         gCtx.strokeStyle = imgCurrLine.color;
         if (idx === 0) {
             gCtx.strokeText(imgCurrLine.txt, gElCanvas.width / 2 + imgCurrLine.width, 50 + imgCurrLine.height);
+            gCtx.fillText(imgCurrLine.txt, gElCanvas.width / 2 + imgCurrLine.width, 50 + imgCurrLine.height);
         } else if (idx === 1) {
             gCtx.strokeText(imgCurrLine.txt, gElCanvas.width / 2 + imgCurrLine.width, gElCanvas.height - 50 + imgCurrLine.height);
+            gCtx.fillText(imgCurrLine.txt, gElCanvas.width / 2 + imgCurrLine.width, gElCanvas.height - 50 + imgCurrLine.height);
         } else {
             gCtx.strokeText(imgCurrLine.txt, gElCanvas.width / 2 + imgCurrLine.width, gElCanvas.height / 2 + imgCurrLine.height);
+            gCtx.fillText(imgCurrLine.txt, gElCanvas.width / 2 + imgCurrLine.width, gElCanvas.height / 2 + imgCurrLine.height);
         }
     })
 }
@@ -101,8 +106,18 @@ function onDeleteLine() {
     renderMeme()
 }
 
+function onSetFillColor(inpVal){
+    setFillColor(inpVal)
+    renderMeme()
+}
+
 function onSaveMeme() {
     saveMeme()
+    document.querySelector('.user-msg').classList.add('open')
+    setTimeout(() => {
+        document.querySelector('.user-msg').classList.remove('open')
+
+    }, 3000)
 }
 
 
@@ -118,7 +133,7 @@ function resizeCanvas() {
     }, 1000)
 }
 
-function onMoveNav() {
+function onToggleNav() {
     document.querySelector('.list-header').classList.toggle('moving')
     document.querySelector('.toggle-menu-screen').classList.toggle('moving')
 }
@@ -142,7 +157,7 @@ function renderSavedMemes() {
         var strHtml = ''
         var img = new Image;
         img.src = savedMeme;
-        return strHtml += `<img src="${img.src}" />`
+        return strHtml += `<img onclick="onOpenModal(this)" src="${img.src}" />`
     })
     document.querySelector('.saved-img-container').innerHTML = strHtmls.join('')
     if (gTimeOutId) clearTimeout(gTimeOutId)
@@ -160,4 +175,35 @@ function onShowGallery() {
 function downloadImg(elLink) {
     var imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
+}
+
+function onOpenModal(elImg) {
+    const elModal = document.querySelector('.modal')
+    const elModalImg = elModal.querySelector('.modal-img-container')
+    const elModalBtns = elModal.querySelector('.modal-btns')
+    let strHtml = `<img src="${elImg.src}" />`
+    elModalImg.innerHTML = strHtml
+    strHtml = `<button class="close-saved-btn" onclick="onCloseModal()">Close</button>
+    <button class="remove-saved-btn" data-src="${elImg.src}" onclick="onRemove(this)">Remove</button>
+    <a href="#" class="load-btn" data-src="${elImg.src}" onclick="onDownloadSaved(this)" download="my-img.jpg">Download</a>`
+    elModalBtns.innerHTML = strHtml
+    elModal.style.display = 'flex'
+}
+
+function onCloseModal() {
+    const elModal = document.querySelector('.modal')
+    elModal.style.display = 'none'
+}
+
+function onDownloadSaved(elLink) {
+    const src = elLink.dataset.src
+    const img = downloadSaved(src)
+    elLink.href = img
+}
+
+function onRemove(elBtn) {
+    const src = elBtn.dataset.src
+    removeImg(src)
+    onCloseModal()
+    renderSavedMemes()
 }

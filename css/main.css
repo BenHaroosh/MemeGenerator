@@ -10,10 +10,6 @@ body {
   margin: 0;
 }
 
-#my-canvas {
-  border-radius: 30px;
-}
-
 button:hover {
   cursor: pointer;
 }
@@ -157,7 +153,8 @@ button:hover {
 }
 
 .button-container button,
-.button-container .color-label {
+.button-container .color-label,
+.button-container .fill-label {
   background-color: white;
   border: 1.5px solid black;
   border-radius: 10px;
@@ -169,6 +166,41 @@ button:hover {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.second-row{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(224, 149, 64);
+  border-radius: 10px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  gap: 5px;
+  align-items: center;
+  grid-auto-rows: 1fr;
+}
+
+#my-canvas {
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+.user-msg {
+  background: #f79737;
+  border-radius: 10px;
+  color: rgb(230, 235, 238);
+  width: 200px;
+  position: absolute;
+  z-index: 5;
+  bottom: 0%;
+  left: 0%;
+  transform: translate(-100%, 0);
+  transition: all 0.3s;
+}
+
+.user-msg.open {
+  transform: translate(0, 0);
 }
 
 /* CONTAINERS */
@@ -195,14 +227,12 @@ button:hover {
   gap: 10px;
 }
 
-.button-container {
+.first-row {
   display: grid;
-  grid-template-columns: repeat(5, 50px);
+  padding: 20px;
+  grid-template-columns: repeat(4, 50px);
   grid-auto-rows: 1fr;
-  grid-template-areas:
-    ". first second third ."
-    "word1 word2 word3 word4 word5"
-    ". word6 word7 word8 .";
+  grid-template-areas: "first second third fourth";
   gap: 5px;
   align-items: center;
 }
@@ -233,10 +263,61 @@ button:hover {
 
 .saved-gallery img {
   padding: 10px;
+  cursor: pointer;
   width: 100%;
   height: 100%;
   object-fit: fill;
   border-radius: 30px;
+}
+
+.modal {
+  background-color: rgb(231, 231, 231);
+  padding: 50px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0%;
+}
+
+.modal h2 {
+  color: rgb(51, 54, 56);
+  border-bottom: turquoise 5px dotted;
+  display: inline-block;
+}
+
+.modal-img-container {
+  height: 400px;
+  margin-bottom: 10px;
+}
+
+.modal-img-container img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.close-modal-btn {
+  position: absolute;
+  border: none;
+  background: inherit;
+  color: #f79737;
+  font-size: 40px;
+  top: 0%;
+  right: 10%;
 }
 
 /* FOOTER */
@@ -309,6 +390,12 @@ button:hover {
   object-fit: contain;
 }
 
+.fill-label {
+  cursor: pointer;
+  grid-area: second;
+  background-color: white;
+}
+
 .color-label {
   grid-area: first;
   cursor: pointer;
@@ -326,46 +413,28 @@ button:hover {
 /* VARIOUS BUTTONS SETTINGS */
 
 .add-line-btn {
-  grid-area: second;
+  grid-area: third;
 }
 
 .trash-btn {
-  grid-area: third;
+  grid-area: fourth;
 }
 
 .decrease-font {
   font-size: 20px;
   font-weight: bold;
-  grid-area: word1;
 }
 .increase-font {
   font-size: 20px;
   font-weight: bold;
-  grid-area: word2;
-}
-.moveUP {
-  grid-area: word3;
-}
-.moveDown {
-  grid-area: word4;
-}
-.left-btn {
-  grid-area: word6;
-}
-.center-btn {
-  grid-area: word7;
-}
-.right-btn {
-  grid-area: word8;
 }
 
-.upNdown {
-  grid-area: word5;
+.up-down-btn {
   background-color: white;
   width: 50px;
 }
 
-.upNdown img {
+.up-down-btn img {
   width: 100%;
   object-fit: cover;
 }
@@ -411,6 +480,42 @@ button:hover {
 
 .share-btn:hover {
   background-color: rgb(38, 40, 139);
+}
+
+.fill-img {
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.remove-saved-btn {
+  background-color: lightgoldenrodyellow;
+  padding: 12px;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.close-saved-btn {
+  background-color: rgb(125, 191, 245);
+  color: aliceblue;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+}
+
+.remove-saved-btn:hover {
+  background-color: rgb(199, 199, 157);
+}
+
+.close-saved-btn:hover {
+  background-color: rgb(99, 151, 194);
+}
+
+.close-modal-btn:hover {
+  color: #d48331;
 }
 
 /* HELPERS */
