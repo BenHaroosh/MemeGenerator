@@ -292,12 +292,13 @@ button:hover {
 }
 
 .modal-img-container {
-  height: 400px;
+  height: 300px;
   margin-bottom: 10px;
 }
 
 .modal-img-container img {
-  object-fit: contain;
+  border-radius: 20px;
+  object-fit: cover;
   width: 100%;
   height: 100%;
 }
